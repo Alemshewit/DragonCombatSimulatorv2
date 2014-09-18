@@ -10,6 +10,9 @@ namespace DragonCombatSimulatorv2
     {
         static void Main(string[] args)
         {
+            Game game = new Game();
+            game.PlayGame():
+            Console.ReadKey();
         }
     }
 }
