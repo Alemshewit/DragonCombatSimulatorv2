@@ -14,7 +14,7 @@ namespace DragonCombatSimulatorv2
 
         public Enemy(string name, int intialHitPoints)
         {
-            this.Name = name;
+            this.Name = name.ToUpper();
             this.HP = intialHitPoints;
         }
 
@@ -36,9 +36,9 @@ namespace DragonCombatSimulatorv2
                 //if the above condition is true get a random number between 5 and 15 and assign it to an int variable 
                damage = rng.Next(5, 16);
                 //subtract the damage from players total
-               player.HP -= damage;
+               Player.HP -= damage;
                 //print t console the output
-               Console.WriteLine("{0} inflicts pain on {1} for {2} damage!", this.Name, Player.Name, damage);
+               Console.WriteLine("{0} inflicts pain on Player for {2} damage!", this.Name, damage);
             }
             else
             {
@@ -46,10 +46,12 @@ namespace DragonCombatSimulatorv2
                 Console.WriteLine("Dragon Missed");
             }
         }
-
+        //take damage takes the damage argument and applies it to enemy
         public void TakeDamage(int damage)
         {
-            
+            this.HP -= damage;
+            if (this.HP <= 0)
+                Console.WriteLine("Enemy defeats player!");
         }
 
     }
