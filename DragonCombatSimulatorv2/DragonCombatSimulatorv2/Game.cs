@@ -8,38 +8,39 @@ namespace DragonCombatSimulatorv2
 {
     class Game
     {
-        public string Player { get; set; }
-        public string Enemy { get; set; }
+        public Player Player { get; set; }
+        public Enemy Enemy { get; set; }
 
         public Game()
         {
-            this.Player = "Alem";
-            this.Enemy = "Dragon";
+            this.Player = new Player(100);
+            this.Enemy = new Enemy("Dragon", 200);
         }
 
-        static void DisplayCombatInfo()
+        private void DisplayCombatInfo()
         {
             //Console.WriteLine(this.Player.hp);
-            
+            Console.WriteLine("Player " + Player.HP,
+                "\nEnemy" + Enemy.HP);
         }
 
-        static void PlayGame()
+        public void PlayGame()
         {
-            while (this.Player.IsAlive && this.Enemy.IsAlive)
+            while (Player.IsAlive && Enemy.IsAlive)
             {
                 DisplayCombatInfo();
-                this.Enemy.TakeDamage(this.Player.DoAttack());
-                this.Player.TakeDamage(this.Enemy.DoAttack());
+                Enemy.TakeDamage(Player.DoAttack());
+                Player.TakeDamage(Enemy.DoAttack());
             }
 
-            if (this.Player.IsAlive)
+            if (!Player.IsAlive)
             {
-                Console.WriteLine("You won!");
+                Console.WriteLine("You have been defeated!");
 
             }
             else
             {
-                Console.WriteLine("You lost!");
+                Console.WriteLine("Congrats! You win, Enemy loses!");
             }
         }
     }

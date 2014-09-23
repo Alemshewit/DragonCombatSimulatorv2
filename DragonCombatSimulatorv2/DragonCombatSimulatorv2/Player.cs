@@ -16,7 +16,10 @@ namespace DragonCombatSimulatorv2
     class Player
     {
         public int HP {get; set;}
-        public bool IsAlive { get; }
+        public bool IsAlive 
+        { 
+            get { return this.HP > 0; } 
+        }
 
         public Player(int intialHitPoints)
         {
@@ -53,7 +56,7 @@ namespace DragonCombatSimulatorv2
                     //get a random number between 20 and 35 and store in an int variable
                     damage = rng.Next(20, 36);
                     //subtract the points player scored from the dragon's totla points
-                    enemy.HP -= damage;
+                    Enemy-= damage;
                     //print to console remaining player points
                     Console.WriteLine("You inflict {0} damages to {1}", damage, enemy.Name);
                     Console.WriteLine();
@@ -74,7 +77,7 @@ namespace DragonCombatSimulatorv2
                 Console.WriteLine("You have chosen magic as you method of attack!");
                 //pick a random number between 10 and 16 and store in an int variable
                 damage = rng.Next(10, 16);
-                enemy.HP -= damage;
+                Enemy.HP -= damage;
                 //print to console remaining points for dragon
                 Console.WriteLine("You inflict {0} damages to {1}", damage, enemy.Name);
 
